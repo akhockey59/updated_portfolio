@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,32 +25,61 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+
+    const templateParams = {
+      from_name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message
+    };
+
+    // First: send the message to *you*
+    emailjs.send(
+      'service_endw5er',
+      'template_pdh45yl', // to your inbox
+      templateParams,
+      'u4bfEdTAtQuR2XEXY'
+    ).then(() => {
+      // Then: send auto-reply to sender
+      return emailjs.send(
+        'service_endw5er',
+        'template_t6tp3z8', // to the sender
+        templateParams,
+        'u4bfEdTAtQuR2XEXY'
+      );
+    }).then(() => {
+      toast({
+        title: 'Message sent!',
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    }).catch((error) => {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: 'Failed to send',
+        description: 'Please try again later or contact directly.',
+      });
     });
-    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.chen@email.com',
-      href: 'mailto:alex.chen@email.com'
+      value: 'akhockey59@gmail.com',
+      href: 'mailto:akhockey59@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+91 8825358871',
+      href: 'tel:+918825358871'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
+      value: 'Marwadi University, Rajkot, Gujarat, India',
+      href: 'https://www.google.com/maps/place/Marwadi+University'
     }
   ];
 
@@ -57,19 +87,19 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com',
+      href: 'https://github.com/akhockey59',
       color: 'hover:text-foreground'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/aakash-maurya-90847a252',
       color: 'hover:text-primary'
     },
     {
       icon: Twitter,
       label: 'Twitter',
-      href: 'https://twitter.com',
+      href: 'https://x.com/Aksky47',
       color: 'hover:text-neural-cyan'
     }
   ];
@@ -126,7 +156,7 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium mb-2">
                     Subject *
@@ -141,7 +171,7 @@ const Contact = () => {
                     placeholder="What's this about?"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Message *
@@ -157,7 +187,7 @@ const Contact = () => {
                     placeholder="Tell me about your project, research idea, or how we can collaborate..."
                   />
                 </div>
-                
+
                 <Button 
                   type="submit" 
                   size="lg" 
@@ -250,7 +280,7 @@ const Contact = () => {
           <div className="bg-card/30 backdrop-blur-sm rounded-lg p-6 border border-border/50 max-w-md mx-auto">
             <h3 className="text-lg font-semibold mb-2 gradient-neural">Response Time</h3>
             <p className="text-sm text-muted-foreground">
-              I typically respond to emails within 24-48 hours. For urgent matters, 
+              I typically respond to emails within 24–48 hours. For urgent matters, 
               please indicate in your subject line.
             </p>
           </div>

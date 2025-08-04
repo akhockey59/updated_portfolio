@@ -4,71 +4,61 @@ import { Card, CardContent } from '@/components/ui/card';
 const Journey = () => {
   const experiences = [
     {
-      year: '2023 - Present',
-      title: 'Senior AI Research Scientist',
-      company: 'TechCorp AI Labs',
-      location: 'San Francisco, CA',
-      description: 'Leading research initiatives in large language models and multimodal AI systems. Developing next-generation AI architectures for autonomous systems.',
+      year: 'May 2025 – July 2025',
+      title: 'Research Intern (AI & Signal Processing)',
+      company: 'IIEST, Shibpur',
+      location: 'Howrah, West Bengal, India',
+      description: 'Conducting research in audio fingerprinting techniques for robust and efficient media retrieval on constrained hardware.',
       achievements: [
-        'Led team of 8 researchers on LLM optimization project',
-        'Published 5 papers in top-tier AI conferences',
-        'Reduced model inference time by 40% while maintaining accuracy'
+        'Engineered a lightweight audio fingerprinting algorithm with 94.3% accuracy on clean audio',
+        'Achieved 82% accuracy on distorted audio samples under real-world signal conditions',
+        'Benchmarked against systems like Shazam and Chromaprint across multiple datasets'
       ]
     },
     {
-      year: '2021 - 2023',
-      title: 'Machine Learning Engineer',
-      company: 'InnovateTech Solutions',
-      location: 'Seattle, WA',
-      description: 'Designed and deployed production ML systems for computer vision and NLP applications. Built scalable ML infrastructure serving millions of users.',
+      year: 'June 2024 – August 2024',
+      title: 'Full Stack Developer Intern',
+      company: 'LernTricks',
+      location: 'Remote',
+      description: 'Designed and deployed a complete web platform to streamline admin workflows, integrating robust backend and user-friendly frontend.',
       achievements: [
-        'Deployed 15+ ML models to production with 99.9% uptime',
-        'Improved recommendation system performance by 35%',
-        'Mentored 6 junior engineers and data scientists'
+        'Increased backend efficiency by 60% using Node.js, Express.js, and MongoDB',
+        'Reduced server response time by 35% through optimized API design',
+        'Built scalable user authentication and database management system with Mongoose'
       ]
     },
     {
-      year: '2019 - 2021',
-      title: 'AI Research Associate',
-      company: 'University Research Lab',
-      location: 'Boston, MA',
-      description: 'Conducted cutting-edge research in deep reinforcement learning and neural architecture search. Collaborated with international research teams.',
+      year: 'June 2024 – August 2024',
+      title: 'Networking Intern (Packet Tracer)',
+      company: 'Cisco (Self-Paced Lab Program)',
+      location: 'Remote',
+      description: 'Completed hands-on network simulations and routing exercises using Cisco Packet Tracer as part of a virtual lab certification.',
       achievements: [
-        'Developed novel RL algorithm with 25% improvement over SOTA',
-        'Co-authored 8 research papers in prestigious journals',
-        'Received Best Paper Award at ICML 2020'
-      ]
-    },
-    {
-      year: '2017 - 2019',
-      title: 'Data Scientist',
-      company: 'DataDriven Analytics',
-      location: 'New York, NY',
-      description: 'Built predictive models for financial services and healthcare clients. Specialized in time series forecasting and anomaly detection.',
-      achievements: [
-        'Delivered $2M+ in client value through ML solutions',
-        'Reduced fraud detection false positives by 60%',
-        'Led workshops on ML best practices for 100+ professionals'
+        'Gained practical experience in network troubleshooting and configuration',
+        'Completed 16+ lab simulations covering routing, switching, and protocols',
+        'Strengthened foundational networking concepts and protocols for system design'
       ]
     }
   ];
+  
 
   const education = [
     {
-      year: '2015 - 2017',
-      degree: 'M.S. in Computer Science',
-      school: 'Stanford University',
-      focus: 'Artificial Intelligence',
-      gpa: '3.9/4.0'
+      year: '2022 – Present',
+      degree: 'B.Tech in Computer Engineering',
+      school: 'Marwadi University, Rajkot',
+      focus: 'Machine Learning, Data Analytics, Computer Vision, Web & App Development',
+      gpa: '8.84 / 10'
     },
     {
-      year: '2011 - 2015',
-      degree: 'B.S. in Computer Engineering',
-      school: 'MIT',
-      focus: 'Machine Learning & Robotics',
-      gpa: '3.8/4.0'
-    }
+      year: '2021 – 2022',
+      degree: 'Higher Secondary (Class 12)',
+      school: 'Motilal Nehru School of Sports, Sonipat',
+      focus: 'Physics, Chemistry, Mathematics',
+      gpa: '78.76%'
+    },
   ];
+  
 
   return (
     <section id="journey" className="py-20 neural-grid">

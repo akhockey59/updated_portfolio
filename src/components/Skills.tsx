@@ -7,53 +7,50 @@ const Skills = () => {
     {
       title: 'Machine Learning & AI',
       skills: [
-        { name: 'Deep Learning', level: 95 },
-        { name: 'Computer Vision', level: 90 },
-        { name: 'Natural Language Processing', level: 88 },
-        { name: 'Reinforcement Learning', level: 85 },
-        { name: 'MLOps', level: 87 }
+        { name: 'Deep Learning (CNN)', level: 94 },
+        { name: 'Computer Vision', level: 92 },
+        { name: 'Audio Fingerprinting & Signal Processing', level: 90 },
+        { name: 'Explainable AI (XAI)', level: 88 },
+        { name: 'Model Deployment & MLOps', level: 85 }
       ]
     },
     {
       title: 'Programming Languages',
       skills: [
-        { name: 'Python', level: 95 },
-        { name: 'JavaScript/TypeScript', level: 85 },
-        { name: 'R', level: 80 },
-        { name: 'Java', level: 75 },
-        { name: 'C++', level: 78 }
+        { name: 'Python', level: 95 },         // AI, DL, CV, ML-heavy usage
+        { name: 'JavaScript', level: 88 },     // MERN stack and frontend work
+        { name: 'C++', level: 85 },            // Strong base, common in CP & DS
+        { name: 'Java', level: 80 },           // App dev (Spring Boot, Android)            // Mentioned in your CV (good to show versatility)
       ]
-    },
-    {
+    },{
       title: 'Frameworks & Tools',
       skills: [
         { name: 'TensorFlow', level: 93 },
-        { name: 'PyTorch', level: 90 },
-        { name: 'Scikit-learn', level: 92 },
-        { name: 'Keras', level: 89 },
-        { name: 'OpenCV', level: 85 }
+        { name: 'Keras', level: 91 },
+        { name: 'Scikit-learn', level: 90 },
+        { name: 'OpenCV', level: 88 },
+        { name: 'PyTorch (Basic)', level: 75 }
       ]
     },
     {
       title: 'Cloud & Infrastructure',
       skills: [
-        { name: 'AWS', level: 88 },
-        { name: 'Google Cloud Platform', level: 85 },
-        { name: 'Docker', level: 82 },
-        { name: 'Kubernetes', level: 78 },
-        { name: 'Azure', level: 80 }
+        { name: 'AWS', level: 88 },                  // AWS Academy Data Engineering
+        { name: 'Docker', level: 82 },               // Mentioned in DevOps section
+        { name: 'Kubernetes', level: 78 },           // Mentioned in DevOps section
+        { name: 'Vagrant', level: 75 },              // Listed in your DevOps tools
       ]
-    }
+    }    
   ];
 
   const technologies = [
-    'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Keras', 'OpenCV',
-    'NLTK', 'spaCy', 'Transformers', 'Hugging Face', 'LangChain', 'Vector DBs',
-    'AWS SageMaker', 'Google AI Platform', 'MLflow', 'Weights & Biases',
-    'Docker', 'Kubernetes', 'Apache Spark', 'Hadoop', 'Elasticsearch',
-    'PostgreSQL', 'MongoDB', 'Redis', 'FastAPI', 'Flask', 'Django',
-    'React', 'TypeScript', 'Node.js', 'Git', 'Linux', 'Jupyter'
-  ];
+    'Python', 'TensorFlow', 'Keras', 'Scikit-learn', 'OpenCV', 'PyTorch',
+    'Pandas', 'NumPy', 'Matplotlib', 'Seaborn',
+    'Docker', 'Kubernetes', 'Vagrant', 'Git', 'Linux',
+    'MongoDB', 'Express.js', 'React', 'Node.js', 'Next.js',
+    'Spring Boot', 'ASP.NET', 'Flutter', 'React Native', 'Java', 'C++',
+    'Google Colab', 'Kaggle', 'MATLAB', 'Tableau', 'Figma', 'Overleaf', 'Jupyter'
+  ];  
 
   return (
     <section id="skills" className="py-20 bg-muted/20">
@@ -114,32 +111,51 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Certifications */}
         <div className="mt-16 slide-in-right">
-          <h3 className="text-2xl font-semibold mb-8 text-center gradient-text">
-            Certifications & Achievements
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="glass hover-lift border-border/50 text-center">
-              <CardContent className="p-6">
-                <div className="text-primary text-2xl font-bold mb-2">AWS</div>
-                <div className="text-sm text-muted-foreground">Machine Learning Specialty</div>
-              </CardContent>
-            </Card>
-            <Card className="glass hover-lift border-border/50 text-center">
-              <CardContent className="p-6">
-                <div className="text-neural-cyan text-2xl font-bold mb-2">Google</div>
-                <div className="text-sm text-muted-foreground">Professional ML Engineer</div>
-              </CardContent>
-            </Card>
-            <Card className="glass hover-lift border-border/50 text-center">
-              <CardContent className="p-6">
-                <div className="text-neural-purple text-2xl font-bold mb-2">TensorFlow</div>
-                <div className="text-sm text-muted-foreground">Developer Certificate</div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+  <h3 className="text-2xl font-semibold mb-8 text-center gradient-text">
+    Certifications & Achievements
+  </h3>
+
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+    
+    <Card className="glass hover-lift border-border/50 text-center">
+      <CardContent className="p-6">
+        <div className="text-primary text-2xl font-bold mb-2">AWS Academy</div>
+        <div className="text-sm text-muted-foreground">Data Engineering</div>
+      </CardContent>
+    </Card>
+
+    <Card className="glass hover-lift border-border/50 text-center">
+      <CardContent className="p-6">
+        <div className="text-neural-cyan text-2xl font-bold mb-2">Cisco</div>
+        <div className="text-sm text-muted-foreground">NDG Linux Essentials</div>
+      </CardContent>
+    </Card>
+
+    <Card className="glass hover-lift border-border/50 text-center">
+      <CardContent className="p-6">
+        <div className="text-neural-cyan text-2xl font-bold mb-2">Cisco</div>
+        <div className="text-sm text-muted-foreground">CCNA7 (16 Labs Completed)</div>
+      </CardContent>
+    </Card>
+
+    <Card className="glass hover-lift border-border/50 text-center">
+      <CardContent className="p-6">
+        <div className="text-neural-purple text-2xl font-bold mb-2">Oracle</div>
+        <div className="text-sm text-muted-foreground">Database Programming with SQL</div>
+      </CardContent>
+    </Card>
+
+    <Card className="glass hover-lift border-border/50 text-center">
+      <CardContent className="p-6">
+        <div className="text-tech-green text-2xl font-bold mb-2">Cisco Packet Tracer</div>
+        <div className="text-sm text-muted-foreground">Network Configuration & Simulation</div>
+      </CardContent>
+    </Card>
+    
+  </div>
+</div>
+
       </div>
     </section>
   );

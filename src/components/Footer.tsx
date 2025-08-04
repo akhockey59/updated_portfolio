@@ -17,9 +17,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:alex.chen@email.com', label: 'Email' }
+    { icon: Github, href: 'https://github.com/akhockey59', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/aakash-maurya-90847a252', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:akhockey59@gmail.com', label: 'Email' }
   ];
 
   return (
@@ -28,11 +28,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold gradient-text mb-4">Alex Chen</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">Aakash</h3>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
-              AI Engineer & Research Scientist passionate about creating intelligent 
-              solutions that make a positive impact on the world through cutting-edge 
-              machine learning and artificial intelligence.
+            AI Engineer & Researcher specializing in Explainable AI, Deep Learning, and 
+intelligent real-world systems — building impactful solutions from vision-based safety 
+to AI-driven agriculture and secure media authentication.
+
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -99,7 +100,7 @@ const Footer = () => {
         <div className="border-t border-border/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center text-sm text-muted-foreground">
-              <span>© {currentYear} Alex Chen. Made with</span>
+              <span>© {currentYear} Aakash Made with</span>
               <Heart className="h-4 w-4 text-neural-pink mx-1" />
               <span>and</span>
               <span className="ml-1 gradient-text font-medium">AI</span>

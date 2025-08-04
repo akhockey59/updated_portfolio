@@ -5,25 +5,26 @@ const About = () => {
   const highlights = [
     {
       icon: Brain,
-      title: 'AI Innovation',
-      description: 'Developing cutting-edge AI solutions that push the boundaries of machine learning'
+      title: 'Applied AI & ML',
+      description: 'Building real-world AI systems from deepfake detection to audio fingerprinting for robust deployment'
     },
     {
       icon: Code,
-      title: 'Technical Excellence',
-      description: 'Proficient in Python, TensorFlow, PyTorch, and modern ML frameworks'
+      title: 'Full-Stack Engineering',
+      description: 'Creating scalable web platforms using MERN, Next.js, and integrating ML models into production systems'
     },
     {
       icon: Lightbulb,
-      title: 'Research Focus',
-      description: 'Contributing to AI research with publications in computer vision and NLP'
+      title: 'Research & Innovation',
+      description: 'Authoring conference papers and patents in computer vision, signal processing, and intelligent systems'
     },
     {
       icon: Target,
-      title: 'Problem Solving',
-      description: 'Translating complex business challenges into intelligent automated solutions'
+      title: 'Competitive Programmer',
+      description: 'Sharpening algorithmic thinking through contests and problem-solving on platforms like LeetCode & Codeforces'
     }
   ];
+  
 
   return (
     <section id="about" className="py-20 neural-grid">
@@ -33,8 +34,7 @@ const About = () => {
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Passionate AI engineer with 5+ years of experience in machine learning, 
-            deep learning, and artificial intelligence research.
+          From deepfake detection to autonomous systems — building the future, one model at a time
           </p>
         </div>
 
@@ -45,24 +45,26 @@ const About = () => {
               My Journey in AI
             </h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                My fascination with artificial intelligence began during my computer science studies, 
-                where I first encountered the elegance of neural networks and their ability to learn 
-                from data. What started as curiosity quickly evolved into a passion for creating 
-                intelligent systems that can understand, learn, and adapt.
-              </p>
-              <p>
-                Over the years, I've had the privilege of working on diverse AI projects ranging from 
-                computer vision systems for autonomous vehicles to natural language processing models 
-                for healthcare applications. Each project has deepened my understanding of the 
-                transformative potential of AI technology.
-              </p>
-              <p>
-                Today, I continue to push the boundaries of what's possible with AI, always staying 
-                at the forefront of emerging technologies while maintaining a focus on ethical and 
-                responsible AI development that benefits society.
-              </p>
-            </div>
+  <p>
+    My journey into AI began as a student of computer engineering, driven by a fascination with how machines can learn,
+    see, and adapt. Since then, I've applied that passion across a range of impactful projects — from building deepfake
+    detection models to designing audio fingerprinting systems robust enough for real-world deployment.
+  </p>
+
+  <p>
+    At IIEST Shibpur, I worked on a lightweight audio fingerprinting algorithm that holds its own against
+    industry-standard systems like Shazam and Panako. My recent work includes explainable AI (XAI) for autonomous
+    vehicles, a calorific value prediction system using computer vision, and an AI-integrated e-commerce platform
+    tailored for farmers.
+  </p>
+
+  <p>
+    I combine strong foundations in machine learning and computer vision with hands-on experience in full-stack
+    development using the MERN stack, Flutter, and Next.js. Whether it’s deploying scalable web apps or writing
+    conference papers on AI models, I bring a research mindset and a builder’s attitude to everything I do.
+  </p>
+</div>
+
           </div>
 
           {/* Highlights Grid */}
@@ -89,25 +91,26 @@ const About = () => {
 
         {/* Stats Section */}
         <div className="mt-20 fade-in">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="hover-scale">
-              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">5+</div>
-              <div className="text-muted-foreground">Years Experience</div>
-            </div>
-            <div className="hover-scale">
-              <div className="text-3xl md:text-4xl font-bold gradient-neural mb-2">50+</div>
-              <div className="text-muted-foreground">Projects Completed</div>
-            </div>
-            <div className="hover-scale">
-              <div className="text-3xl md:text-4xl font-bold text-neural-cyan mb-2">15+</div>
-              <div className="text-muted-foreground">Research Papers</div>
-            </div>
-            <div className="hover-scale">
-              <div className="text-3xl md:text-4xl font-bold text-tech-green mb-2">10+</div>
-              <div className="text-muted-foreground">Awards</div>
-            </div>
-          </div>
-        </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center justify-center">
+    
+    <div className="hover-scale">
+      <div className="text-3xl md:text-4xl font-bold gradient-neural mb-2">10+</div>
+      <div className="text-muted-foreground">Projects Completed</div>
+    </div>
+    
+    <div className="hover-scale">
+      <div className="text-3xl md:text-4xl font-bold text-neural-cyan mb-2">4+</div>
+      <div className="text-muted-foreground">Research Papers</div>
+    </div>
+    
+    <div className="hover-scale">
+      <div className="text-3xl md:text-4xl font-bold text-tech-green mb-2">5+</div>
+      <div className="text-muted-foreground">Certifications</div>
+    </div>
+
+  </div>
+</div>
+
       </div>
     </section>
   );
