@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { ColorThemeSelector } from '@/components/ColorThemeSelector';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,8 +51,8 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -62,10 +64,16 @@ const Navigation = () => {
                 </button>
               ))}
             </div>
+            <div className="flex items-center space-x-2 ml-4">
+              <ColorThemeSelector />
+              <ThemeToggle />
+            </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ColorThemeSelector />
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
