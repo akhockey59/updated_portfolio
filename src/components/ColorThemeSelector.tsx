@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Palette, Check } from "lucide-react";
-import { useTheme, type ColorTheme } from "@/contexts/ThemeContext";
+import { useColorTheme, type ColorTheme } from "@/contexts/ThemeContext";
 
 const colorThemes: { value: ColorTheme; label: string; color: string }[] = [
   { value: 'blue', label: 'Neural Blue', color: 'hsl(217, 91%, 60%)' },
@@ -17,7 +17,7 @@ const colorThemes: { value: ColorTheme; label: string; color: string }[] = [
 ];
 
 export function ColorThemeSelector() {
-  const { colorTheme, setColorTheme } = useTheme();
+  const { colorTheme, setColorTheme } = useColorTheme();
 
   return (
     <DropdownMenu>
