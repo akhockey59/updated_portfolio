@@ -2,14 +2,16 @@ import { ExternalLink, Github, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import  mg  from '@/assets/bg.jpg';
+import deepfakeImg from '@/assets/project-deepfake.jpg';
+import audioImg from '@/assets/project-audio.jpg';
+import autonomousImg from '@/assets/project-autonomous.jpg';
 
 const Projects = () => {
   const projects = [
     {
       title: 'Fake Image Detection Model',
       description: 'Developed a CNN-based deepfake detection system achieving 94.78% accuracy across varied image resolutions. Enhanced early detection of manipulated content and drafted a conference paper.',
-      image: '/placeholder.svg',
+      image: deepfakeImg,
       technologies: ['Python', 'TensorFlow', 'CNN', 'OpenCV', 'Scikit-learn'],
       category: 'Computer Vision',
       featured: true,
@@ -23,7 +25,7 @@ const Projects = () => {
     {
       title: 'Audio Fingerprinting System',
       description: 'Designed a noise-robust audio fingerprinting system benchmarked against Shazam, achieving 94.3% accuracy on clean and 82% on distorted audio. Built for resource-constrained environments.',
-      image: '/placeholder.svg',
+      image: audioImg,
       technologies: ['Python', 'Signal Processing', 'Scikit-learn', 'Pandas'],
       category: 'Signal Processing',
       featured: false,
@@ -49,7 +51,7 @@ const Projects = () => {
     {
       title: 'Object Detection with XAI for Autonomous Vehicles',
       description: 'Currently working on an object detection system for self-driving cars, enhanced with explainable AI techniques like Grad-CAM and SHAP. Focused on improving transparency and reducing edge-case misclassifications.',
-      image: '/placeholder.svg',
+      image: autonomousImg,
       technologies: ['Python', 'OpenCV', 'TensorFlow', 'Grad-CAM', 'SHAP'],
       category: 'Computer Vision / XAI',
       featured: false,
@@ -69,15 +71,14 @@ const Projects = () => {
   const regularProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-20 bg-muted/20">
+    <section id="projects" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            Featured Projects
+        <div className="mb-16 fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Featured Work
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Innovative AI solutions that demonstrate the power of machine learning 
-            in solving real-world challenges.
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Real projects solving actual problems with AI and machine learning.
           </p>
         </div>
 
@@ -87,15 +88,16 @@ const Projects = () => {
             {featuredProjects.map((project, index) => (
               <Card 
                 key={index} 
-                className="glass hover-lift border-border/50 overflow-hidden group slide-in-left"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className="card-hover overflow-hidden group bg-card border"
               >
                 <div className="relative">
-                  <div className="h-48 bg-gradient-to-br from-primary/20 to-neural-cyan/20 flex items-center justify-center">
-                    <div className="text-6xl text-primary/40">🤖</div>
-                  </div>
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="h-56 w-full object-cover"
+                  />
                   <div className="absolute top-4 right-4">
-                    <Badge className="bg-neural-orange text-neural-orange-foreground">
+                    <Badge className="bg-accent text-accent-foreground">
                       <Star className="h-3 w-3 mr-1" />
                       Featured
                     </Badge>
@@ -104,7 +106,7 @@ const Projects = () => {
 
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    <CardTitle className="text-2xl">
                       {project.title}
                     </CardTitle>
                     <Badge variant="outline" className="text-xs">
@@ -118,9 +120,9 @@ const Projects = () => {
 
                 <CardContent>
                   {/* Metrics */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.metrics.slice(0, 3).map((metric, metricIndex) => (
-                      <div key={metricIndex} className="text-xs text-neural-cyan bg-neural-cyan/10 px-2 py-1 rounded">
+                      <div key={metricIndex} className="text-xs text-primary bg-primary/10 px-3 py-1.5 rounded">
                         {metric}
                       </div>
                     ))}
@@ -132,7 +134,7 @@ const Projects = () => {
                       <Badge 
                         key={techIndex} 
                         variant="secondary" 
-                        className="text-xs bg-card/50"
+                        className="text-xs"
                       >
                         {tech}
                       </Badge>
@@ -140,13 +142,14 @@ const Projects = () => {
                   </div>
 
                   {/* Links */}
-                  <div className="flex gap-2">
-                    <Button size="sm" className="flex-1 hover-scale">
+                  <div className="flex gap-3">
+                    <Button size="sm" className="flex-1">
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
+                      View Demo
                     </Button>
-                    <Button variant="outline" size="sm" className="hover-scale">
-                      <Github className="h-4 w-4" />
+                    <Button variant="outline" size="sm">
+                      <Github className="h-4 w-4 mr-2" />
+                      Code
                     </Button>
                   </div>
                 </CardContent>
@@ -157,75 +160,87 @@ const Projects = () => {
 
         {/* Regular Projects Grid */}
         <div className="fade-in">
-          <h3 className="text-2xl font-semibold mb-8 text-center gradient-neural">
-            More Projects
+          <h3 className="text-3xl font-semibold mb-8 text-foreground">
+            Other Work
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {regularProjects.map((project, index) => (
-              <a
+              <Card 
                 key={index}
-                href={project.links?.demo || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
+                className="card-hover bg-card border"
               >
-                <Card 
-                  className="glass hover-lift border-border/50 group slide-in-right"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {project.title}
-                      </CardTitle>
-                      <Badge variant="outline" className="text-xs">
-                        {project.category}
+                <div className="relative h-48 bg-muted overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <CardHeader>
+                  <div className="flex justify-between items-start mb-2">
+                    <CardTitle className="text-xl">
+                      {project.title}
+                    </CardTitle>
+                    <Badge variant="outline" className="text-xs">
+                      {project.category}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {project.description}
+                  </p>
+                </CardHeader>
+
+                <CardContent>
+                  {/* Key Metric */}
+                  <div className="mb-4">
+                    <div className="text-primary bg-primary/10 px-3 py-1.5 rounded text-sm inline-block">
+                      {project.metrics[0]}
+                    </div>
+                  </div>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <Badge 
+                        key={techIndex} 
+                        variant="secondary" 
+                        className="text-xs"
+                      >
+                        {tech}
                       </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </p>
-                  </CardHeader>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <Badge variant="secondary" className="text-xs">
+                        +{project.technologies.length - 4}
+                      </Badge>
+                    )}
+                  </div>
 
-                  <CardContent>
-                    {/* Key Metric */}
-                    <div className="text-center mb-4">
-                      <div className="text-neural-cyan bg-neural-cyan/10 px-3 py-1 rounded text-sm inline-block">
-                        {project.metrics[0]}
-                      </div>
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                        <Badge 
-                          key={techIndex} 
-                          variant="secondary" 
-                          className="text-xs bg-card/50"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <Badge variant="secondary" className="text-xs bg-card/50">
-                          +{project.technologies.length - 3}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="flex-1 hover-scale">
+                  {/* Links */}
+                  <div className="flex gap-3">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex-1"
+                      asChild
+                    >
+                      <a href={project.links?.demo || '#'} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-3 w-3 mr-2" />
-                        View
-                      </Button>
-                      <Button variant="ghost" size="sm" className="hover-scale">
+                        View Project
+                      </a>
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      asChild
+                    >
+                      <a href={project.links?.github || '#'} target="_blank" rel="noopener noreferrer">
                         <Github className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>

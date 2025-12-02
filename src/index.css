@@ -1,53 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* AI Engineer Portfolio Design System */
+/* Human-Crafted Portfolio Design System */
 
 @layer base {
   :root {
-    /* Base Colors */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Natural & Warm */
+    --background: 40 20% 97%;
+    --foreground: 25 25% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 25 25% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.75rem;
+    --popover-foreground: 25 25% 15%;
+    --secondary: 35 30% 92%;
+    --secondary-foreground: 25 25% 15%;
+    --muted: 35 20% 88%;
+    --muted-foreground: 25 15% 45%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 25 70% 50%;
+    --radius: 0.5rem;
 
-    /* Blue Theme (Default) */
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 217 91% 70%;
-    --accent: 267 84% 65%;
-    --accent-foreground: 210 40% 98%;
+    /* Blue Theme (Default) - More Natural */
+    --primary: 210 65% 45%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 210 65% 55%;
+    --accent: 25 70% 50%;
+    --accent-foreground: 0 0% 98%;
     
-    /* Color Palette */
-    --neural-cyan: 191 91% 55%;
-    --neural-purple: 267 84% 65%;
-    --neural-pink: 328 85% 70%;
-    --neural-orange: 25 95% 65%;
-    --tech-green: 142 76% 55%;
+    /* Color Palette - Earthy & Authentic */
+    --neural-cyan: 195 60% 48%;
+    --neural-purple: 265 50% 52%;
+    --neural-pink: 340 65% 58%;
+    --neural-orange: 25 70% 50%;
+    --tech-green: 145 55% 42%;
 
-    /* Gradients - Dynamic based on theme */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-neural: linear-gradient(135deg, hsl(var(--neural-purple)), hsl(var(--neural-pink)));
-    --gradient-tech: linear-gradient(135deg, hsl(var(--neural-cyan)), hsl(var(--tech-green)));
-    --gradient-bg: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
-
-    /* Shadows & Effects */
-    --shadow-neural: 0 10px 40px -10px hsl(var(--primary) / 0.3);
-    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.4);
-    --shadow-card: 0 8px 32px -8px hsl(220 30% 2% / 0.4);
+    /* Subtle Effects Only */
+    --shadow-card: 0 2px 12px -2px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px -4px rgba(0, 0, 0, 0.15);
 
     /* Animation Variables */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -71,28 +66,28 @@
   }
 
   .dark {
-    --background: 220 30% 6%;
-    --foreground: 210 40% 98%;
-    --card: 220 27% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 220 27% 8%;
-    --popover-foreground: 210 40% 98%;
-    --secondary: 220 27% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 220 27% 12%;
-    --muted-foreground: 215 20% 65%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 27% 18%;
-    --input: 220 27% 18%;
-    --ring: 217 91% 60%;
+    --background: 25 15% 8%;
+    --foreground: 40 20% 95%;
+    --card: 25 12% 10%;
+    --card-foreground: 40 20% 95%;
+    --popover: 25 12% 10%;
+    --popover-foreground: 40 20% 95%;
+    --secondary: 25 12% 14%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 25 12% 16%;
+    --muted-foreground: 35 15% 60%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 12% 18%;
+    --input: 25 12% 18%;
+    --ring: 25 70% 50%;
     
-    /* Keep theme colors same in dark mode */
-    --primary: 217 91% 60%;
-    --primary-foreground: 220 30% 6%;
-    --primary-glow: 217 91% 70%;
-    --accent: 267 84% 65%;
-    --accent-foreground: 210 40% 98%;
+    /* Natural colors in dark mode */
+    --primary: 210 65% 55%;
+    --primary-foreground: 25 15% 8%;
+    --primary-glow: 210 65% 65%;
+    --accent: 25 70% 50%;
+    --accent-foreground: 0 0% 98%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -136,107 +131,50 @@
 @layer base {
   * {
     @apply border-border;
-    transition: var(--transition-smooth);
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    background: var(--gradient-bg);
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
   }
 }
 
 @layer components {
-  /* Neural Network Animation */
-  .neural-grid {
-    background-image: 
-      radial-gradient(circle at 25% 25%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, hsl(var(--neural-cyan) / 0.1) 0%, transparent 50%);
-  }
-
   /* Smooth Scroll */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Gradient Text */
-  .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Subtle accent text */
+  .accent-text {
+    color: hsl(var(--accent));
   }
 
-  .gradient-neural {
-    background: var(--gradient-neural);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Glass Morphism */
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Glowing Effects */
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .glow-neural {
-    box-shadow: 0 0 30px hsl(var(--neural-purple) / 0.4);
-  }
-
-  /* Hover Animations */
-  .hover-lift {
-    transition: var(--transition-smooth);
+  /* Natural card style */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-neural);
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
 
-  .hover-scale {
-    transition: var(--transition-smooth);
-  }
-  
-  .hover-scale:hover {
-    transform: scale(1.05);
-  }
-
-  /* Floating Animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  /* Pulse Glow */
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes pulse-glow {
-    from { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
-    to { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
-  }
-
-  /* Fade In Animation */
+  /* Subtle animations only */
   .fade-in {
-    animation: fade-in 0.8s ease-out forwards;
+    animation: fade-in 0.6s ease-out forwards;
   }
 
   @keyframes fade-in {
     from { 
       opacity: 0; 
-      transform: translateY(30px); 
+      transform: translateY(20px); 
     }
     to { 
       opacity: 1; 
@@ -244,34 +182,4 @@
     }
   }
 
-  /* Slide In Animation */
-  .slide-in-left {
-    animation: slide-in-left 0.8s ease-out forwards;
-  }
-
-  @keyframes slide-in-left {
-    from { 
-      opacity: 0; 
-      transform: translateX(-50px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateX(0); 
-    }
-  }
-
-  .slide-in-right {
-    animation: slide-in-right 0.8s ease-out forwards;
-  }
-
-  @keyframes slide-in-right {
-    from { 
-      opacity: 0; 
-      transform: translateX(50px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateX(0); 
-    }
-  }
 }
