@@ -12,7 +12,7 @@ const Research = () => {
       citations: 0,
       impact: 'High',
       abstract: 'Proposed a CNN-based model with Error Level Analysis (ELA) achieving 94.84% accuracy in detecting deepfake images and videos.',
-      authors: ['Your Name'],
+      authors: ['Aakash', 'Bittu Kumari', 'Anjali Diwan'],
       status: 'Accepted & Presented',
       venue: 'Marwadi University, Rajkot, India',
       publisher: 'Springer',
@@ -27,7 +27,7 @@ const Research = () => {
       citations: 0,
       impact: 'High',
       abstract: 'Developed a machine learning-based prediction model achieving 97.95% accuracy with ensemble methods for optimal crop selection based on soil and environmental parameters.',
-      authors: ['Your Name'],
+      authors: ['Aakash', 'Bittu Kumari', 'Anjali Diwan'],
       status: 'Accepted & Presented',
       venue: 'Ajeenkya DY Patil University, Pune, India',
       links: {
@@ -41,7 +41,7 @@ const Research = () => {
       citations: 0,
       impact: 'High',
       abstract: 'Focused on robust audio fingerprinting techniques under noise and distortion for reliable voice identification in challenging acoustic environments.',
-      authors: ['Your Name'],
+      authors: ['Aakash', 'Bittu Kumari', 'Anjali Diwan'],
       status: 'Accepted',
       venue: 'IIT Delhi, India',
       links: {
@@ -192,12 +192,6 @@ const Research = () => {
                   </div>
                   
                   <div className="flex flex-wrap gap-2">
-                    {paper.links.paper && (
-                      <Button size="sm" variant="outline" className="hover-scale">
-                        <BookOpen className="h-4 w-4 mr-2" />
-                        Paper
-                      </Button>
-                    )}
                     {'code' in paper.links && paper.links.code && (
                       <Button size="sm" variant="outline" className="hover-scale">
                         <ExternalLink className="h-4 w-4 mr-2" />
