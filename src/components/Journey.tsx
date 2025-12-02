@@ -4,6 +4,19 @@ import { Card, CardContent } from '@/components/ui/card';
 const Journey = () => {
   const experiences = [
     {
+      year: 'November 2025 – Present',
+      title: 'Database Administrator',
+      company: 'Twishatech Technology',
+      location: 'Ahmedabad, Gujarat, India',
+      description: 'Managing enterprise database systems, ensuring data integrity, security, and optimal performance across production environments.',
+      achievements: [
+        'Designed and optimized database schemas for improved query performance and scalability',
+        'Implemented comprehensive backup and disaster recovery strategies',
+        'Managed user permissions and enforced database security protocols',
+        'Monitored system health and performed routine maintenance to ensure 99.9% uptime'
+      ]
+    },
+    {
       year: 'May 2025 – July 2025',
       title: 'Research Intern (AI & Signal Processing)',
       company: 'IIEST, Shibpur',
@@ -25,18 +38,6 @@ const Journey = () => {
         'Increased backend efficiency by 60% using Node.js, Express.js, and MongoDB',
         'Reduced server response time by 35% through optimized API design',
         'Built scalable user authentication and database management system with Mongoose'
-      ]
-    },
-    {
-      year: 'June 2024 – August 2024',
-      title: 'Networking Intern (Packet Tracer)',
-      company: 'Cisco (Self-Paced Lab Program)',
-      location: 'Remote',
-      description: 'Completed hands-on network simulations and routing exercises using Cisco Packet Tracer as part of a virtual lab certification.',
-      achievements: [
-        'Gained practical experience in network troubleshooting and configuration',
-        'Completed 16+ lab simulations covering routing, switching, and protocols',
-        'Strengthened foundational networking concepts and protocols for system design'
       ]
     }
   ];
