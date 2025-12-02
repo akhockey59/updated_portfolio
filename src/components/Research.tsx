@@ -6,117 +6,70 @@ import { Badge } from '@/components/ui/badge';
 const Research = () => {
   const papers = [
     {
-      title: 'Efficient Neural Architecture Search via Gradient-Based Optimization',
-      journal: 'International Conference on Machine Learning (ICML)',
-      year: '2023',
-      citations: 147,
-      impact: 'High',
-      abstract: 'We propose a novel gradient-based approach for neural architecture search that significantly reduces computational cost while maintaining high performance. Our method achieves state-of-the-art results on ImageNet with 50% fewer GPU hours.',
-      authors: ['Alex Chen', 'Dr. Sarah Johnson', 'Prof. Michael Zhang'],
-      status: 'Published',
-      links: {
-        paper: '#',
-        code: '#',
-        slides: '#'
-      }
-    },
-    {
-      title: 'Multimodal Fusion for Enhanced Medical Diagnosis: A Deep Learning Approach',
-      journal: 'Nature Machine Intelligence',
-      year: '2023',
-      citations: 89,
-      impact: 'High',
-      abstract: 'This work presents a comprehensive framework for fusing medical images, text reports, and structured data to improve diagnostic accuracy. Validated on over 50,000 patient cases across multiple hospitals.',
-      authors: ['Alex Chen', 'Dr. Emily Rodriguez', 'Dr. David Kim'],
-      status: 'Published',
-      links: {
-        paper: '#',
-        code: '#'
-      }
-    },
-    {
-      title: 'Robust Reinforcement Learning for Autonomous Navigation in Dynamic Environments',
-      journal: 'Robotics and Autonomous Systems',
-      year: '2022',
-      citations: 203,
-      impact: 'Very High',
-      abstract: 'We develop a robust RL framework that enables autonomous agents to navigate safely in dynamic environments with moving obstacles and changing conditions. Demonstrated on real-world drone and robot platforms.',
-      authors: ['Alex Chen', 'Prof. Lisa Wang', 'Dr. James Thompson'],
-      status: 'Published',
-      links: {
-        paper: '#',
-        code: '#',
-        video: '#'
-      }
-    },
-    {
-      title: 'Attention Mechanisms in Graph Neural Networks for Drug Discovery',
-      journal: 'Journal of Chemical Information and Modeling',
-      year: '2022',
-      citations: 156,
-      impact: 'High',
-      abstract: 'Novel attention-based graph neural network architecture for molecular property prediction and drug discovery. Achieved significant improvements in binding affinity prediction for COVID-19 drug targets.',
-      authors: ['Alex Chen', 'Dr. Maria Silva', 'Prof. Robert Lee'],
-      status: 'Published',
-      links: {
-        paper: '#',
-        code: '#'
-      }
-    },
-    {
-      title: 'Federated Learning with Differential Privacy for Healthcare Applications',
-      journal: 'IEEE Transactions on Medical Imaging',
-      year: '2021',
-      citations: 278,
-      impact: 'Very High',
-      abstract: 'A privacy-preserving federated learning framework that enables collaborative training of medical AI models across institutions while protecting patient privacy through differential privacy mechanisms.',
-      authors: ['Alex Chen', 'Dr. Anna Petrov', 'Prof. Kevin Brown'],
-      status: 'Published',
-      links: {
-        paper: '#',
-        code: '#'
-      }
-    },
-    {
-      title: 'Self-Supervised Learning for Time Series Anomaly Detection',
-      journal: 'Under Review at NeurIPS',
-      year: '2024',
+      title: 'Deepfake Detection: Leveraging AI to Identify Manipulated Media',
+      journal: '4th International Conference on Advancements in Smart Computing & Information Security (ASCIS 2025)',
+      year: 'Sept 2025',
       citations: 0,
-      impact: 'TBD',
-      abstract: 'We introduce a self-supervised learning approach for detecting anomalies in multivariate time series data without requiring labeled examples. The method shows promising results on industrial IoT and financial datasets.',
-      authors: ['Alex Chen', 'Dr. Thomas Mueller', 'Prof. Yuki Tanaka'],
-      status: 'Under Review',
+      impact: 'High',
+      abstract: 'Proposed a CNN-based model with Error Level Analysis (ELA) achieving 94.84% accuracy in detecting deepfake images and videos.',
+      authors: ['Your Name'],
+      status: 'Accepted & Presented',
+      venue: 'Marwadi University, Rajkot, India',
+      publisher: 'Springer',
       links: {
-        preprint: '#'
+        paper: '#'
+      }
+    },
+    {
+      title: 'Crop Prediction Using Machine Learning',
+      journal: 'International Conference on Intelligent Computing & Intelligent Systems (ICICIS-2025)',
+      year: 'Sept 2025',
+      citations: 0,
+      impact: 'High',
+      abstract: 'Developed a machine learning-based prediction model achieving 97.95% accuracy with ensemble methods for optimal crop selection based on soil and environmental parameters.',
+      authors: ['Your Name'],
+      status: 'Accepted & Presented',
+      venue: 'Ajeenkya DY Patil University, Pune, India',
+      links: {
+        paper: '#'
+      }
+    },
+    {
+      title: 'Hybrid Audio Fingerprinting of Human Voice Under Distortion',
+      journal: 'International Conference on Pattern Recognition and Machine Intelligence (PReMI 2025)',
+      year: '2025',
+      citations: 0,
+      impact: 'High',
+      abstract: 'Focused on robust audio fingerprinting techniques under noise and distortion for reliable voice identification in challenging acoustic environments.',
+      authors: ['Your Name'],
+      status: 'Accepted',
+      venue: 'IIT Delhi, India',
+      links: {
+        paper: '#'
       }
     }
   ];
 
   const researchAreas = [
     {
-      area: 'Neural Architecture Search',
-      papers: 8,
-      description: 'Automated design of optimal neural network architectures'
-    },
-    {
-      area: 'Medical AI',
-      papers: 6,
-      description: 'AI applications in healthcare and medical diagnosis'
-    },
-    {
-      area: 'Reinforcement Learning',
-      papers: 5,
-      description: 'RL for robotics and autonomous systems'
-    },
-    {
       area: 'Computer Vision',
-      papers: 7,
-      description: 'Advanced vision systems and multimodal learning'
+      papers: 1,
+      description: 'Deepfake detection and image manipulation analysis'
     },
     {
-      area: 'Privacy-Preserving AI',
-      papers: 4,
-      description: 'Federated learning and differential privacy'
+      area: 'Machine Learning',
+      papers: 1,
+      description: 'Agricultural prediction and optimization systems'
+    },
+    {
+      area: 'Audio Processing',
+      papers: 1,
+      description: 'Voice fingerprinting and audio signal analysis'
+    },
+    {
+      area: 'AI Security',
+      papers: 3,
+      description: 'Ongoing research in AI safety and security'
     }
   ];
 
@@ -147,20 +100,20 @@ const Research = () => {
         {/* Research Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 fade-in">
           <div className="text-center hover-scale">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">25+</div>
-            <div className="text-muted-foreground">Publications</div>
+            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">3</div>
+            <div className="text-muted-foreground">Accepted Papers</div>
           </div>
           <div className="text-center hover-scale">
-            <div className="text-3xl md:text-4xl font-bold gradient-neural mb-2">1200+</div>
-            <div className="text-muted-foreground">Citations</div>
+            <div className="text-3xl md:text-4xl font-bold gradient-neural mb-2">3</div>
+            <div className="text-muted-foreground">Ongoing Research</div>
           </div>
           <div className="text-center hover-scale">
-            <div className="text-3xl md:text-4xl font-bold text-neural-cyan mb-2">h-index 18</div>
-            <div className="text-muted-foreground">Research Impact</div>
+            <div className="text-3xl md:text-4xl font-bold text-neural-cyan mb-2">2</div>
+            <div className="text-muted-foreground">Presented</div>
           </div>
           <div className="text-center hover-scale">
-            <div className="text-3xl md:text-4xl font-bold text-tech-green mb-2">5</div>
-            <div className="text-muted-foreground">Best Papers</div>
+            <div className="text-3xl md:text-4xl font-bold text-tech-green mb-2">94.84%</div>
+            <div className="text-muted-foreground">Best Accuracy</div>
           </div>
         </div>
 
@@ -169,7 +122,7 @@ const Research = () => {
           <h3 className="text-2xl font-semibold mb-8 text-center gradient-neural">
             Research Areas
           </h3>
-          <div className="grid md:grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-4 gap-4">
             {researchAreas.map((area, index) => (
               <Card 
                 key={index} 
@@ -207,7 +160,8 @@ const Research = () => {
                       <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                         <span className="font-medium text-primary">{paper.journal}</span>
                         <span>{paper.year}</span>
-                        <span>{paper.citations} citations</span>
+                        {'venue' in paper && <span className="text-neural-cyan">{paper.venue}</span>}
+                        {'publisher' in paper && <span className="text-tech-green">{paper.publisher}</span>}
                       </div>
                     </div>
                     <div className="flex gap-2">
@@ -244,19 +198,19 @@ const Research = () => {
                         Paper
                       </Button>
                     )}
-                    {paper.links.code && (
+                    {'code' in paper.links && paper.links.code && (
                       <Button size="sm" variant="outline" className="hover-scale">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Code
                       </Button>
                     )}
-                    {paper.links.slides && (
+                    {'slides' in paper.links && paper.links.slides && (
                       <Button size="sm" variant="outline" className="hover-scale">
                         <Download className="h-4 w-4 mr-2" />
                         Slides
                       </Button>
                     )}
-                    {paper.links.preprint && (
+                    {'preprint' in paper.links && paper.links.preprint && (
                       <Button size="sm" variant="outline" className="hover-scale">
                         <BookOpen className="h-4 w-4 mr-2" />
                         Preprint
