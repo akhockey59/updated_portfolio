@@ -56,7 +56,7 @@ const Journey = () => {
       degree: 'Higher Secondary (Class 12)',
       school: 'Motilal Nehru School of Sports, Sonipat',
       focus: 'Physics, Chemistry, Mathematics',
-      gpa: '78.76%'
+      Percentage: '78.76%'
     },
   ];
   
