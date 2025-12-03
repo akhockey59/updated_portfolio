@@ -1,7 +1,7 @@
 import { Brain, Code, Lightbulb, Target } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import profilePhoto from '@/assets/profile-photo.png';
+const catImageUrl = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop";
 
 const About = () => {
   const highlights = [
@@ -45,7 +45,7 @@ const About = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-6">
               <Avatar className="h-40 w-40 border-4 border-primary/30 shadow-xl transition-all duration-300 hover:scale-110 hover:border-primary hover:shadow-2xl hover:shadow-primary/20">
-                <AvatarImage src={profilePhoto} alt="Aakash" className="object-cover" />
+                <AvatarImage src={catImageUrl} alt="Cat" className="h-full w-full object-cover" />
                 <AvatarFallback className="text-3xl font-display">A</AvatarFallback>
               </Avatar>
               <div>
