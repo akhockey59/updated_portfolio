@@ -1,6 +1,7 @@
 import { Brain, Code, Lightbulb, Target } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import profilePhoto from '@/assets/profile-photo.png';
 
 const About = () => {
   const highlights = [
@@ -43,9 +44,9 @@ const About = () => {
           {/* Personal Story with Photo */}
           <div className="space-y-6">
             <div className="flex items-center gap-6">
-              <Avatar className="h-28 w-28 border-4 border-primary/20 shadow-lg">
-                <AvatarImage src="/placeholder.svg" alt="Aakash" />
-                <AvatarFallback className="text-2xl font-display">A</AvatarFallback>
+              <Avatar className="h-40 w-40 border-4 border-primary/30 shadow-xl transition-all duration-300 hover:scale-110 hover:border-primary hover:shadow-2xl hover:shadow-primary/20">
+                <AvatarImage src={profilePhoto} alt="Aakash" className="object-cover" />
+                <AvatarFallback className="text-3xl font-display">A</AvatarFallback>
               </Avatar>
               <div>
                 <h3 className="text-2xl font-display font-semibold text-foreground">
