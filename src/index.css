@@ -249,4 +249,33 @@
     animation: pulse-glow 3s ease-in-out infinite;
   }
 
+  /* Cursor follower animations */
+  @keyframes cursor-breathe {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes cursor-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .cursor-orb {
+    animation: cursor-breathe 2s ease-in-out infinite;
+  }
+
+  .cursor-ring {
+    animation: cursor-spin 8s linear infinite, cursor-breathe 3s ease-in-out infinite;
+  }
+
 }
