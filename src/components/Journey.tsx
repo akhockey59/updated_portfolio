@@ -144,7 +144,7 @@ const Journey = () => {
                   <h4 className="text-xl font-semibold mb-2">{edu.degree}</h4>
                   <p className="text-primary font-medium mb-2">{edu.school}</p>
                   <p className="text-sm text-muted-foreground mb-2">{edu.focus}</p>
-                  <div className="text-sm text-neural-orange font-medium">GPA: {edu.gpa}</div>
+                  <div className="text-sm text-neural-orange font-medium">Percentage: {edu.Percentage}</div>
                 </CardContent>
               </Card>
             ))}
