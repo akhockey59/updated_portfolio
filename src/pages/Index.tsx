@@ -8,10 +8,12 @@ import Research from '@/components/Research';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import FloatingElements from '@/components/FloatingElements';
+import CursorFollower from '@/components/CursorFollower';
 
 const Index = () => {
   return (
     <div className="min-h-screen relative">
+      <CursorFollower />
       <FloatingElements />
       <Navigation />
       <Hero />
