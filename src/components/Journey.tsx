@@ -56,7 +56,7 @@ const Journey = () => {
       degree: 'Higher Secondary (Class 12)',
       school: 'Motilal Nehru School of Sports, Sonipat',
       focus: 'Physics, Chemistry, Mathematics',
-      Percentage: '78.76%'
+      gpa: '78.76%'
     },
   ];
   
@@ -144,7 +144,7 @@ const Journey = () => {
                   <h4 className="text-xl font-semibold mb-2">{edu.degree}</h4>
                   <p className="text-primary font-medium mb-2">{edu.school}</p>
                   <p className="text-sm text-muted-foreground mb-2">{edu.focus}</p>
-                  <div className="text-sm text-neural-orange font-medium">Percentage: {edu.Percentage}</div>
+                  <div className="text-sm text-neural-orange font-medium">GPA: {edu.gpa}</div>
                 </CardContent>
               </Card>
             ))}
