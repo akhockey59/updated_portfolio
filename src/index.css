@@ -278,4 +278,72 @@
     animation: cursor-spin 8s linear infinite, cursor-breathe 3s ease-in-out infinite;
   }
 
+  /* Global interactive hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -15px hsl(var(--primary) / 0.2);
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
+  }
+
+  .hover-border-glow {
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .hover-border-glow:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+
+  .hover-text-glow:hover {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .hover-rotate {
+    transition: transform 0.3s ease;
+  }
+  .hover-rotate:hover {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  /* Button and link hover enhancements */
+  a, button {
+    transition: all 0.2s ease;
+  }
+
+  /* Card hover effects */
+  [class*="card"], [class*="Card"] {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Image hover zoom */
+  img {
+    transition: transform 0.4s ease;
+  }
+
+  /* Badge/tag hover */
+  [class*="badge"], [class*="Badge"] {
+    transition: all 0.2s ease;
+  }
+  [class*="badge"]:hover, [class*="Badge"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.2);
+  }
+
+  /* Icon hover effect */
+  svg {
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  a:hover svg, button:hover svg {
+    transform: scale(1.1);
+  }
+
 }
