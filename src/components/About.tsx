@@ -1,5 +1,6 @@
 import { Brain, Code, Lightbulb, Target } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const About = () => {
   const highlights = [
@@ -27,10 +28,10 @@ const About = () => {
   
 
   return (
-    <section id="about" className="py-20 neural-grid">
+    <section id="about" className="py-20 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-foreground">
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -39,32 +40,28 @@ const About = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Personal Story */}
-          <div className="slide-in-left">
-            <h3 className="text-2xl font-semibold mb-6 gradient-neural">
-              My Journey in AI
-            </h3>
+          {/* Personal Story with Photo */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-6">
+              <Avatar className="h-28 w-28 border-4 border-primary/20 shadow-lg">
+                <AvatarImage src="/placeholder.svg" alt="Aakash" />
+                <AvatarFallback className="text-2xl font-display">A</AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="text-2xl font-display font-semibold text-foreground">
+                  My Journey in AI
+                </h3>
+                <p className="text-muted-foreground">Engineer & Researcher</p>
+              </div>
+            </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-  <p>
-    My journey into AI began as a student of computer engineering, driven by a fascination with how machines can learn,
-    see, and adapt. Since then, I've applied that passion across a range of impactful projects — from building deepfake
-    detection models to designing audio fingerprinting systems robust enough for real-world deployment.
-  </p>
-
-  <p>
-    At IIEST Shibpur, I worked on a lightweight audio fingerprinting algorithm that holds its own against
-    industry-standard systems like Shazam and Panako. My recent work includes explainable AI (XAI) for autonomous
-    vehicles, a calorific value prediction system using computer vision, and an AI-integrated e-commerce platform
-    tailored for farmers.
-  </p>
-
-  <p>
-    I combine strong foundations in machine learning and computer vision with hands-on experience in full-stack
-    development using the MERN stack, Flutter, and Next.js. Whether it’s deploying scalable web apps or writing
-    conference papers on AI models, I bring a research mindset and a builder’s attitude to everything I do.
-  </p>
-</div>
-
+              <p>
+                My journey into AI began as a computer engineering student, driven by curiosity about how machines learn and adapt. Since then, I've built deepfake detection models, audio fingerprinting systems, and explainable AI for autonomous vehicles.
+              </p>
+              <p>
+                I combine machine learning expertise with full-stack development skills, bringing a research mindset and builder's attitude to everything I create.
+              </p>
+            </div>
           </div>
 
           {/* Highlights Grid */}
