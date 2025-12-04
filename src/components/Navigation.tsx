@@ -53,12 +53,11 @@ const Navigation = () => {
             <span 
               className="text-2xl md:text-3xl font-bold tracking-tight relative inline-block"
               style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.7) 50%, hsl(var(--primary)) 100%)',
+                background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 50%, hsl(var(--primary)) 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                textShadow: '0 4px 8px hsl(var(--primary)/0.3)',
-                filter: 'drop-shadow(0 2px 4px hsl(var(--primary)/0.2))',
+                filter: 'drop-shadow(0 0 20px hsl(var(--primary))) drop-shadow(0 0 40px hsl(var(--primary)/0.5))',
                 fontFamily: "'Playfair Display', serif",
                 fontStyle: 'italic',
               }}
@@ -67,9 +66,9 @@ const Navigation = () => {
                 Skywalker's Portfolio
               </span>
               <span 
-                className="absolute inset-0 blur-sm opacity-50"
+                className="absolute inset-0 blur-md opacity-80"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.5) 100%)',
+                  background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
