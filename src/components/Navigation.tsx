@@ -46,9 +46,39 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold gradient-text">Skywalker's Portfolio</span>
-          </div>
+          <button 
+            onClick={() => scrollToSection('home')}
+            className="flex-shrink-0 group cursor-pointer"
+          >
+            <span 
+              className="text-2xl md:text-3xl font-bold tracking-tight relative inline-block"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.7) 50%, hsl(var(--primary)) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 4px 8px hsl(var(--primary)/0.3)',
+                filter: 'drop-shadow(0 2px 4px hsl(var(--primary)/0.2))',
+                fontFamily: "'Playfair Display', serif",
+                fontStyle: 'italic',
+              }}
+            >
+              <span className="relative z-10 group-hover:scale-105 transition-transform duration-300 inline-block">
+                Skywalker's Portfolio
+              </span>
+              <span 
+                className="absolute inset-0 blur-sm opacity-50"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.5) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Skywalker's Portfolio
+              </span>
+            </span>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
