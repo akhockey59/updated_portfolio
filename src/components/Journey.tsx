@@ -49,14 +49,16 @@ const Journey = () => {
       degree: 'B.Tech in Computer Engineering',
       school: 'Marwadi University, Rajkot',
       focus: 'Machine Learning, Data Analytics, Computer Vision, Web & App Development',
-      gpa: '8.84 / 10'
+      grade: '8.84 / 10',
+      gradeLabel: 'GPA'
     },
     {
       year: '2021 – 2022',
       degree: 'Higher Secondary (Class 12)',
       school: 'Motilal Nehru School of Sports, Sonipat',
       focus: 'Physics, Chemistry, Mathematics',
-      gpa: '78.76%'
+      grade: '78.76%',
+      gradeLabel: 'Percentage'
     },
   ];
   
@@ -144,7 +146,7 @@ const Journey = () => {
                   <h4 className="text-xl font-semibold mb-2">{edu.degree}</h4>
                   <p className="text-primary font-medium mb-2">{edu.school}</p>
                   <p className="text-sm text-muted-foreground mb-2">{edu.focus}</p>
-                  <div className="text-sm text-neural-orange font-medium">GPA: {edu.gpa}</div>
+                  <div className="text-sm text-neural-orange font-medium">{edu.gradeLabel}: {edu.grade}</div>
                 </CardContent>
               </Card>
             ))}
