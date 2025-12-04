@@ -50,33 +50,39 @@ const Navigation = () => {
             onClick={() => scrollToSection('home')}
             className="flex-shrink-0 group cursor-pointer"
           >
-            <span 
-              className="text-2xl md:text-3xl font-bold tracking-tight relative inline-block"
+            <div 
+              className="relative px-4 py-2 md:px-6 md:py-2.5 rounded-md overflow-hidden transition-all duration-300 group-hover:scale-105"
               style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 50%, hsl(var(--primary)) 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 20px hsl(var(--primary))) drop-shadow(0 0 40px hsl(var(--primary)/0.5))',
-                fontFamily: "'Playfair Display', serif",
-                fontStyle: 'italic',
+                background: 'linear-gradient(180deg, hsl(var(--primary)/0.9) 0%, hsl(var(--primary)) 50%, hsl(var(--primary)/0.7) 100%)',
+                boxShadow: `
+                  0 0 30px hsl(var(--primary)/0.6),
+                  0 0 60px hsl(var(--primary)/0.4),
+                  inset 0 1px 0 hsl(var(--primary-foreground)/0.3),
+                  inset 0 -1px 0 hsl(var(--primary)/0.5)
+                `,
+                border: '1px solid hsl(var(--primary)/0.8)',
               }}
             >
-              <span className="relative z-10 group-hover:scale-105 transition-transform duration-300 inline-block">
-                Skywalker's Portfolio
-              </span>
-              <span 
-                className="absolute inset-0 blur-md opacity-80"
+              {/* Glow overlay */}
+              <div 
+                className="absolute inset-0 opacity-50"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  background: 'linear-gradient(180deg, hsl(var(--primary-foreground)/0.2) 0%, transparent 50%, hsl(var(--primary)/0.3) 100%)',
+                }}
+              />
+              {/* Text */}
+              <span 
+                className="relative z-10 text-lg md:text-xl font-bold tracking-wide"
+                style={{
+                  color: 'hsl(var(--primary-foreground))',
+                  textShadow: '0 1px 2px hsl(var(--primary)/0.5), 0 0 20px hsl(var(--primary-foreground)/0.3)',
+                  fontFamily: "'Playfair Display', serif",
+                  fontStyle: 'italic',
                 }}
               >
                 Skywalker's Portfolio
               </span>
-            </span>
+            </div>
           </button>
 
           {/* Desktop Navigation */}
