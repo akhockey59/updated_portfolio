@@ -178,7 +178,6 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
   }, []);
 
   return <div className="earth-scene">
-    <p className="globe-instructions">Drag in any direction · Two-finger scroll on trackpad</p>
     <div className="earth-stage">
     <canvas ref={canvasRef} className="earth-canvas" role="img" aria-label="Interactive 3D Earth showing shared visitor locations. Markers group visitors by approximate region. Drag in any direction or use two-finger trackpad scrolling to rotate."/>
     {textureState !== 'ready' && <div className="earth-loading" role="status">{textureState === 'loading' ? 'Bringing the world into view…' : 'Earth preview unavailable.'}</div>}
@@ -193,7 +192,6 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
       </div>
       {visitors.data && <>
         {visitors.data.regions.length > 0 ? <details className="visitor-regions"><summary>Explore visitor locations</summary><ul>{[...visitors.data.regions].sort((a, b) => b.visitors - a.visitors).map(region => <li key={region.id}><button onClick={() => controls.current?.center(region)}><span>{region.label}</span><strong>{region.visitors.toLocaleString()}</strong></button></li>)}</ul></details> : <p className="visitor-map-note">{visitors.data.totalVisitors ? 'Location data is not available for these visits yet.' : 'The journey starts with the first visitor.'}</p>}
-        <p className="visitor-map-note">Distinct browsers · Approximate locations{visitors.data.totalVisitors > visitors.data.locatedVisitors ? ` · ${(visitors.data.totalVisitors - visitors.data.locatedVisitors).toLocaleString()} without location` : ''}</p>
       </>}
     </div>
   </div>;

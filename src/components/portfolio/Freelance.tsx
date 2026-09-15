@@ -22,8 +22,8 @@ function Enquiry({ service, children, className }: {service?: string; children: 
 
 export default function Freelance() {
   return <section className="freelance-section section-space" id="freelance"><div className="shell">
-    <div className="section-heading reveal"><div><p className="eyebrow section-label"><span>05 /</span> WORK WITH ME · FREELANCE</p><h2>Your database.<br/><span className="serif-word">My next challenge.</span></h2></div><p>Independent database help for your next project.<br/>A focused review, a new design, or a planned migration.</p></div>
-    <div className="service-grid">{services.map((service, index) => <article className="service-card reveal" key={freelanceServices[index]}>
+    <div className="section-heading reveal"><div><p className="eyebrow section-label"><span>07 /</span> WORK WITH ME · FREELANCE</p><h2>Your database.<br/><span className="serif-word">My next challenge.</span></h2></div><p>Independent database help for your next project.<br/>A focused review, a new design, or a planned migration.</p></div>
+    <div className="service-grid">{services.map((service, index) => <article className="service-card reveal" key={freelanceServices[index]} data-depth>
       <div className="service-top"><service.icon size={26} strokeWidth={1.4}/><span>0{index + 1}</span></div>
       <h3>{freelanceServices[index]}</h3><p>{service.description}</p><span className="service-deliverables">{service.deliverables}</span>
       <Enquiry service={freelanceServices[index]} className="service-cta">Discuss this service <ArrowUpRight size={18}/></Enquiry>

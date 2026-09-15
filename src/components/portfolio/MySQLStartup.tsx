@@ -100,7 +100,7 @@ export default function MySQLStartup({ onEnter }: { onEnter: () => void }) {
           <div className="mysql-avatar" aria-hidden="true"><Database size={38} strokeWidth={1.25} /></div>
           <p className="mysql-kicker">WELCOME TO MY WORKSPACE</p>
           <h1 id="mysql-ready-title">Aakash Maurya<span>.</span></h1>
-          <p className="mysql-role">Database Engineer / MySQL DBA</p>
+          <p className="mysql-role">Production MySQL DBA / Database Engineer</p>
           <dl className="mysql-session"><div><dt>user</dt><dd>visitor</dd></div><div><dt>database</dt><dd>aakash_portfolio</dd></div><div><dt>access</dt><dd>Explore freely</dd></div></dl>
           <button ref={enterButton} className="mysql-enter" onClick={onEnter}>Enter portfolio <ArrowRight size={20} /></button>
           <p className="mysql-ready-hint"><span>mysql&gt;</span> USE aakash_portfolio;<span className="mysql-cursor" aria-hidden="true" /></p>

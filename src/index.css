@@ -103,7 +103,9 @@ h2 {font-weight: 500; font-size: clamp(42px, 4.9vw, 69px); letter-spacing: -.06e
 .theme-preview > span {width: 10px; height: 10px; border-radius: 50%;}
 .theme-option-name {flex: 1;}
 .theme-option-mode {font-size: 12px; color: hsl(var(--muted-foreground));}
-.header-contact {display: flex; align-items: center; gap: 19px; border-bottom: 1px solid hsl(var(--foreground)); font-size: 12px; padding-block: 7px;}
+.header-availability {display: flex; align-items: center; gap: 9px; white-space: nowrap; font-size: 12px; padding-block: 9px; color: hsl(var(--muted-foreground));}
+.header-availability:hover {color: hsl(var(--foreground));}
+.header-availability .status-dot {box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 12%, transparent);}
 .menu-button {display: none !important;}
 .hero {padding-top: 35px;}
 .hero-topline {display: flex; justify-content: space-between;}
@@ -303,7 +305,7 @@ html[data-motion="off"] {scroll-behavior: auto;}
   .project-visual {height: 290px;}.discipline-strip > div {gap: 20px;}.discipline-strip span {font-size: 9px;}.contact-big-arrow {width: 110px; height: 110px;}
 }
 @media (max-width: 800px) {
-  html {scroll-padding-top: 88px;}.shell {width: calc(100% - 48px);}.site-header {height: 73px; padding-inline: 24px;}.desktop-nav,.header-contact {display: none;}.menu-button {display: inline-flex !important;}.wordmark {font-size: 27px;}.wordmark > svg {width: 20px; margin-left: 12px;}.header-actions {gap: 16px;}
+  html {scroll-padding-top: 88px;}.shell {width: calc(100% - 48px);}.site-header {height: 73px; padding-inline: 24px;}.desktop-nav,.header-availability {display: none;}.menu-button {display: inline-flex !important;}.wordmark {font-size: 27px;}.wordmark > svg {width: 20px; margin-left: 12px;}.header-actions {gap: 16px;}
   .mobile-nav {position: absolute; top: 72px; left: 0; right: 0; background: hsl(var(--background)); border-bottom: 1px solid hsl(var(--border)); padding: 14px 24px 24px; box-shadow: 0 18px 28px #0001;}
   .mobile-nav a {padding-block: 17px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid hsl(var(--border)); font-size: 16px;}
   .hero {padding-top: 27px;}.hero-main {grid-template-columns: 1.1fr 1fr; gap: 0; min-height: 520px; padding-block: 40px;}h1 {font-size: clamp(55px,8vw,70px);}.hero-description {font-size: 12px;}.hero-art {height: 380px; margin-right: -10px;}.hero-intro {font-size: 12px;}.hero-buttons {gap: 15px; flex-wrap: wrap;}.hero-buttons .button {padding: 12px 14px; font-size: 11px; min-height: 45px;}.hero-buttons .text-link {font-size: 11px;}.hero-period {font-size: 40px;}
@@ -397,7 +399,7 @@ html[data-motion="off"] {scroll-behavior: auto;}
 /* Larger reading sizes, floating previews, and freelance enquiries. */
 .hero-description {font-size: 16px; max-width: 410px;}
 .hero-intro {font-size: 16px;}
-.desktop-nav a, .header-contact {font-size: 14px;}
+.desktop-nav a, .header-availability {font-size: 14px;}
 .desktop-nav {gap: 22px;}
 .button, .text-link {font-size: 14px;}
 .eyebrow, .section-label {font-size: 11px;}
@@ -469,7 +471,7 @@ html[data-motion="off"] {scroll-behavior: auto;}
 .globe-art .art-axis {opacity: .5;}
 .motion-button {font-size: 11px;}
 @media (max-width: 1100px) {
-  .desktop-nav {gap: 15px;}.desktop-nav a,.header-contact {font-size: 12px;}.header-actions {gap: 15px;}
+  .desktop-nav {gap: 15px;}.desktop-nav a,.header-availability {font-size: 12px;}.header-actions {gap: 15px;}
   .globe-art {height: 500px;}.visitor-location {left: 3%; right: 0;}.hero-description {font-size: 15px;}
 }
 @media (max-width: 800px) {
@@ -515,7 +517,7 @@ html[data-motion="off"] {scroll-behavior: auto;}
 .toolkit-group h3, .job-company, .education p {font-size: 19px;}
 .about-copy .large-copy {font-size: 29px;}
 .about-stats > div > span {font-size: 14px;}
-.hero-intro, .hero-social, .desktop-nav a, .header-contact, .text-link, .button,
+.hero-intro, .hero-social, .desktop-nav a, .header-availability, .text-link, .button,
 .contact-form label, .freelance-process p {font-size: 16px;}
 .paper-venue, .experience > .eyebrow, .eyebrow, .section-label {font-size: 12px;}
 .globe-art {background: none;}.globe-art:before {display: none;}
@@ -523,7 +525,7 @@ html[data-motion="off"] {scroll-behavior: auto;}
 .visitor-location strong {font-size: 15px;}.visitor-location span {font-size: 12px;}
 .globe-instructions {font-size: 12px;}.motion-button {font-size: 12px;}
 @media (max-width: 1100px) {
-  .desktop-nav a,.header-contact {font-size: 14px;}.desktop-nav {gap: 14px;}
+  .desktop-nav a,.header-availability {font-size: 14px;}.desktop-nav {gap: 14px;}
   .project-visual-bottom small {font-size: 12px;}.project-visual-top {font-size: 13px;}
 }
 @media (max-width: 800px) {

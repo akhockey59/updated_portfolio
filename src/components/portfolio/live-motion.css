@@ -1,0 +1,60 @@
+/* Decorative motion adds depth without changing the document's layout. */
+.live-atmosphere {position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; color: hsl(var(--primary));}
+.portfolio {isolation: isolate;}
+.portfolio > main, .portfolio > footer {position: relative; z-index: 1;}
+.database-network {display: block; width: 100%; height: 100%;}
+/* Section washes preserve contrast; cards remain opaque in front of the network. */
+.portfolio :is(.about-section, .case-studies-section, .freelance-section) {background: color-mix(in srgb, var(--surface) 78%, transparent);}
+.portfolio .contact-section {background: color-mix(in srgb, var(--contact-bg) 78%, transparent);}
+.site-motion-toggle {flex-shrink: 0; color: hsl(var(--primary));}
+.site-motion-toggle[aria-pressed="false"] {color: hsl(var(--muted-foreground));}
+
+[data-depth] {position: relative; transform-style: preserve-3d; transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s, border-color .3s;}
+[data-depth]::after {content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(400px circle at var(--light-x, 50%) var(--light-y, 50%), hsl(var(--primary) / .14), transparent 70%); opacity: 0; transition: opacity .35s; z-index: 2;}
+html[data-motion="on"] [data-depth][data-hovered="true"] {transform: perspective(1100px) rotateX(var(--depth-x, 0deg)) rotateY(var(--depth-y, 0deg)) translateY(-5px); border-color: hsl(var(--primary) / .65); box-shadow: 0 20px 40px -22px hsl(var(--primary) / .4); z-index: 3;}
+html[data-motion="on"] [data-depth][data-hovered="true"]::after {opacity: 1;}
+html[data-motion="on"] .about-note[data-hovered="true"] {transform: perspective(1100px) rotate(-3deg) rotateX(var(--depth-x, 0deg)) rotateY(var(--depth-y, 0deg)) translateY(-5px);}
+.scale-grid > div {background: hsl(var(--background));}
+.scale-value, .service-top svg, .case-card-bottom svg {transition: transform .4s cubic-bezier(.2,.7,.2,1);}
+html[data-motion="on"] [data-hovered="true"] .scale-value {transform: translateZ(24px) translateY(-3px);}
+html[data-motion="on"] [data-hovered="true"] .service-top svg {transform: translateZ(24px) rotate(-12deg) scale(1.15);}
+html[data-motion="on"] [data-hovered="true"] .case-card-bottom svg {transform: translate(4px, 4px);}
+.hero-proof li, .production-stack li, .case-tools > span {transition: transform .25s, color .25s, text-shadow .25s;}
+@media (hover: hover) and (pointer: fine) {
+  html[data-motion="on"] :is(.hero-proof li, .production-stack li, .case-tools > span):hover {transform: perspective(600px) translateY(-4px) rotateX(12deg); color: hsl(var(--primary)); text-shadow: 0 5px 18px hsl(var(--primary) / .3);}
+  html[data-motion="on"] .project-visual:hover > img {transform: scale(1.035);}
+  html[data-motion="on"] :is(.button, .service-cta):hover svg {transform: translate(3px, -3px);}
+  html[data-motion="on"] .desktop-nav a:hover {transform: translateY(-3px);}
+  html[data-motion="on"] .toolkit-group:hover {transform: perspective(800px) rotateY(-3deg) translateY(-4px);}
+  html[data-motion="on"] .paper > summary:hover {background: hsl(var(--primary) / .04);}
+  html[data-motion="on"] .contact-heading:hover .contact-big-arrow {transform: perspective(700px) rotateY(-20deg) translate(5px, -5px);}
+}
+.toolkit-group, .contact-big-arrow {transition: transform .4s;}
+.paper > summary {transition: background .3s;}
+.button svg, .service-cta svg {transition: transform .25s;}
+.dual-cluster-member, .case-workflow li, .cluster-node {transition: transform .3s, border-color .3s, background .3s;}
+html[data-motion="on"] :is(.dual-cluster-member, .case-workflow li, .cluster-node):hover {transform: perspective(600px) translateZ(12px) translateY(-3px); border-color: hsl(var(--primary)); background: hsl(var(--primary) / .08);}
+.dual-cluster-member svg, .cluster-members svg {animation: database-heartbeat 3.6s ease-in-out infinite; animation-play-state: paused;}
+.dual-cluster-host:nth-child(2) svg {animation-delay: .6s;}.dual-cluster-host:nth-child(3) svg {animation-delay: 1.2s;}
+[data-motion-visible] .dual-cluster-member svg, [data-motion-visible] .cluster-members svg {animation-play-state: running;}
+.workflow-arrow {animation: packet-flow 2.6s ease-in-out infinite; animation-play-state: paused;}
+.case-workflow li:nth-child(even) .workflow-arrow {animation-delay: .6s;}
+[data-motion-visible] .workflow-arrow {animation-play-state: running;}
+.cluster-replication > span {position: relative; overflow: hidden;}
+.cluster-replication > span::after {content: ''; position: absolute; inset: 0; background: hsl(var(--foreground)); transform: translateX(-100%); animation: replication-packet 2.8s linear infinite; animation-play-state: paused;}
+[data-motion-visible] .cluster-replication > span::after {animation-play-state: running;}
+[data-motion-visible] .status-dot {animation: database-heartbeat 3s ease-in-out infinite;}
+@keyframes database-heartbeat {0%, 100% {opacity: .6; filter: drop-shadow(0 0 0 transparent);} 50% {opacity: 1; filter: drop-shadow(0 0 6px hsl(var(--primary) / .6));}}
+@keyframes packet-flow {0%, 100% {transform: translateY(-3px); opacity: .4;} 55% {transform: translateY(3px); opacity: 1;}}
+@keyframes replication-packet {to {transform: translateX(100%);}}
+html[data-motion="off"] [data-depth] {transform: none;}
+@media (max-width: 800px) {.live-atmosphere {opacity: .6;}}
+@media (max-width: 380px) {
+  .site-header .header-actions {gap: 8px;}
+  .site-header .theme-menu-trigger {width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%;}
+  .site-header .theme-menu-trigger > span, .site-header .theme-menu-trigger > svg:last-child {display: none;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-atmosphere {display: none;}
+  [data-depth], [data-depth] * {transform: none !important;}
+}
