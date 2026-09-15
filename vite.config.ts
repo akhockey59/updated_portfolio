@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // Preserve the browser-facing Host so same-origin registrations remain valid.
+    proxy: { '/api': { target: 'http://127.0.0.1:5173', changeOrigin: false } },
   },
   plugins: [
     react(),

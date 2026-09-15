@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { LocateFixed, MapPin } from 'lucide-react';
-import { useVisitorLocation, type VisitorLocation } from './useVisitorLocation';
+import { RotateCcw, Users } from 'lucide-react';
+import { useVisitorMap, type VisitorRegion } from './useVisitorMap';
 import { themeAccent, type Theme } from './themes';
 
 const PI2 = Math.PI * 2;
@@ -8,16 +8,15 @@ const radians = (degrees: number) => degrees * Math.PI / 180;
 
 export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const settings = useRef<{motion: boolean; theme: Theme; location?: VisitorLocation}>({motion, theme});
-  const controls = useRef<{redraw: () => void; center: () => void}>();
+  const settings = useRef<{motion: boolean; theme: Theme; regions: VisitorRegion[]}>({motion, theme, regions: []});
+  const controls = useRef<{redraw: () => void; center: (region?: VisitorRegion) => void}>();
   const [textureState, setTextureState] = useState<'loading' | 'ready' | 'error'>('loading');
-  const visitor = useVisitorLocation();
+  const visitors = useVisitorMap();
 
   useEffect(() => {
-    settings.current = {motion, theme, location: visitor.location};
+    settings.current = {motion, theme, regions: visitors.data?.regions ?? []};
     controls.current?.redraw();
-  }, [motion, theme, visitor.location]);
-  useEffect(() => {controls.current?.center();}, [visitor.location]);
+  }, [motion, theme, visitors.data]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -55,23 +54,27 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
         ctx.beginPath(); ctx.arc(centerX + rx * r, centerY - ry * r, Math.max(.55, r * .0052) * (.58 + depth * .42), 0, PI2); ctx.fill();
       }
       canvas.dataset.landPoints = String(landPoints.length);
-      const location = settings.current.location;
-      if (location) {
-        const lat = radians(location.latitude), lon = radians(location.longitude);
+      let visibleMarkers = 0;
+      for (const region of settings.current.regions) {
+        const lat = radians(region.latitude), lon = radians(region.longitude);
         const x = Math.cos(lat) * Math.sin(lon), y = Math.sin(lat), z = Math.cos(lat) * Math.cos(lon);
         const rx = x * cy + z * sy, rz = -x * sy + z * cy;
         const ry = y * cp - rz * sp, depth = y * sp + rz * cp;
         if (depth > .05) {
+          visibleMarkers++;
           const px = centerX + rx * r, py = centerY - ry * r;
+          const size = Math.min(16, 6 + Math.log2(region.visitors + 1) * 1.4);
           ctx.strokeStyle = accent; ctx.lineWidth = 1.5;
-          ctx.beginPath(); ctx.arc(px, py, 11, 0, PI2); ctx.stroke();
-          ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(px, py, 4, 0, PI2); ctx.fill();
-          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1; ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(px, py - 11); ctx.lineTo(px, py - 29); ctx.stroke();
-          ctx.font = '600 10px sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff';
-          ctx.shadowColor = '#000000'; ctx.shadowBlur = 5; ctx.fillText('YOU', px, py - 35); ctx.shadowBlur = 0;
+          ctx.fillStyle = '#101510'; ctx.beginPath(); ctx.arc(px, py, size, 0, PI2); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = accent;
+          if (region.visitors > 1) {
+            ctx.font = '600 10px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText(region.visitors > 999 ? '1k+' : String(region.visitors), px, py);
+          } else { ctx.beginPath(); ctx.arc(px, py, 3, 0, PI2); ctx.fill(); }
         }
       }
+      canvas.dataset.visitorRegions = String(settings.current.regions.length);
+      canvas.dataset.visibleMarkers = String(visibleMarkers);
       canvas.dataset.longitude = String(yaw);
       canvas.dataset.latitude = String(pitch);
     };
@@ -84,9 +87,9 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
       cancelAnimationFrame(frame); frame = 0; draw();
       if (!disposed && !drag && !wheelActive && visible && !document.hidden && settings.current.motion) {last = performance.now(); frame = requestAnimationFrame(tick);}
     };
-    const center = () => {
-      const location = settings.current.location;
-      if (location) {yaw = -radians(location.longitude); pitch = radians(location.latitude);}
+    const center = (region?: VisitorRegion) => {
+      yaw = region ? -radians(region.longitude) : radians(-78);
+      pitch = region ? radians(region.latitude) : radians(20);
       draw();
     };
     controls.current = {redraw: sync, center};
@@ -177,13 +180,21 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
   return <div className="earth-scene">
     <p className="globe-instructions">Drag in any direction · Two-finger scroll on trackpad</p>
     <div className="earth-stage">
-    <canvas ref={canvasRef} className="earth-canvas" role="img" aria-label="Interactive dotted 3D Earth with white continents and a visitor marker matching the selected theme. Drag with a mouse or finger in any direction, or scroll with two fingers on a trackpad to rotate. Use the location button to center your visitor marker."/>
+    <canvas ref={canvasRef} className="earth-canvas" role="img" aria-label="Interactive 3D Earth showing shared visitor locations. Markers group visitors by approximate region. Drag in any direction or use two-finger trackpad scrolling to rotate."/>
     {textureState !== 'ready' && <div className="earth-loading" role="status">{textureState === 'loading' ? 'Bringing the world into view…' : 'Earth preview unavailable.'}</div>}
     </div>
-    <div className="visitor-location">
-      <MapPin size={16}/>
-      <div role="status"><strong>{visitor.status === 'loading' ? 'Finding your region…' : visitor.location ? visitor.location.label : 'Your location is unavailable'}</strong><span>{visitor.location?.source === 'browser' ? 'Location shared by your browser · not stored' : visitor.location ? 'Approximate IP location · may reflect a VPN' : 'The globe works without sharing your location.'}</span></div>
-      {visitor.location ? <button className="icon-button" onClick={() => controls.current?.center()} aria-label="Center globe on my location"><LocateFixed size={16}/></button> : visitor.status === 'unavailable' && <button className="location-opt-in" onClick={visitor.useBrowserLocation}>Locate me</button>}
+    <div className="visitor-map-summary">
+      <div className="visitor-location">
+        <Users size={18}/>
+        <div role="status"><strong>{visitors.data ? `${visitors.data.totalVisitors.toLocaleString()} ${visitors.data.totalVisitors === 1 ? 'visitor' : 'visitors'} worldwide` : visitors.status === 'loading' ? 'Loading the visitor map…' : 'Visitor map unavailable'}</strong>
+          <span>{visitors.data ? `${visitors.data.regions.length} ${visitors.data.regions.length === 1 ? 'region' : 'regions'} · ${visitors.stale ? 'Last available count' : 'All-time visitors'}` : 'A shared view of everyone who stops by.'}</span>
+        </div>
+        <button className="icon-button" onClick={() => controls.current?.center()} aria-label="Reset globe view"><RotateCcw size={16}/></button>
+      </div>
+      {visitors.data && <>
+        {visitors.data.regions.length > 0 ? <details className="visitor-regions"><summary>Explore visitor locations</summary><ul>{[...visitors.data.regions].sort((a, b) => b.visitors - a.visitors).map(region => <li key={region.id}><button onClick={() => controls.current?.center(region)}><span>{region.label}</span><strong>{region.visitors.toLocaleString()}</strong></button></li>)}</ul></details> : <p className="visitor-map-note">{visitors.data.totalVisitors ? 'Location data is not available for these visits yet.' : 'The journey starts with the first visitor.'}</p>}
+        <p className="visitor-map-note">Distinct browsers · Approximate locations{visitors.data.totalVisitors > visitors.data.locatedVisitors ? ` · ${(visitors.data.totalVisitors - visitors.data.locatedVisitors).toLocaleString()} without location` : ''}</p>
+      </>}
     </div>
   </div>;
 }

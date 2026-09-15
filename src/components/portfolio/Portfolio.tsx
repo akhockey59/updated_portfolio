@@ -90,12 +90,12 @@ export default function Portfolio() {
             <div className="hero-buttons"><a className="button button-primary" href="#projects">Explore my work <ArrowDownRight size={20}/></a><ResumePreview/></div>
           </div>
           <div className="hero-art globe-art">
-            <div className="art-coordinates eyebrow">ONE PLANET. CONNECTED BY DATA.</div>
+            <div className="art-coordinates eyebrow">ONE PLANET. A WORLD OF VISITORS.</div>
             <div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/>
             <Earth theme={theme} motion={motion}/>
             
             <span className="art-axis axis-one">+</span><span className="art-axis axis-two">+</span>
-            <div className="art-caption"><span className="eyebrow">{motion?'YOUR PART OF THE WORLD.':'EXPLORE AT YOUR OWN PACE.'}</span><button className="motion-button" disabled={reducedMotion} onClick={()=>setMotionPreference(!motionPreference)} aria-label={reducedMotion?'Motion disabled by system preference':motion?'Pause animations':'Enable animations'} aria-pressed={motion}>{motion?<Pause size={12}/>:<Play size={12}/>}<span>{reducedMotion?'Reduced motion':motion?'Motion on':'Motion off'}</span></button></div>
+            <div className="art-caption"><span className="eyebrow">{motion?'CONNECTIONS AROUND THE WORLD.':'EXPLORE AT YOUR OWN PACE.'}</span><button className="motion-button" disabled={reducedMotion} onClick={()=>setMotionPreference(!motionPreference)} aria-label={reducedMotion?'Motion disabled by system preference':motion?'Pause animations':'Enable animations'} aria-pressed={motion}>{motion?<Pause size={12}/>:<Play size={12}/>}<span>{reducedMotion?'Reduced motion':motion?'Motion on':'Motion off'}</span></button></div>
           </div>
         </div>
         <div className="hero-bottom"><p>PRODUCTION MINDSET.<br/><span>MEASURE. VALIDATE. IMPROVE.</span></p><div className="hero-social"><a href="https://github.com/akhockey59" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13}/></a><a href="https://www.linkedin.com/in/aakash-maurya-90847a252" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={13}/></a></div><a className="scroll-cue" href="#projects">SCROLL TO DISCOVER <ArrowDown size={17}/></a></div>
