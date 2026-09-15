@@ -1,31 +1,22 @@
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Journey from '@/components/Journey';
-import Projects from '@/components/Projects';
-import Research from '@/components/Research';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import FloatingElements from '@/components/FloatingElements';
-import CursorFollower from '@/components/CursorFollower';
+import { useLayoutEffect, useState } from 'react';
+import Portfolio from '@/components/portfolio/Portfolio';
+import MySQLStartup from '@/components/portfolio/MySQLStartup';
 
-const Index = () => {
-  return (
-    <div className="min-h-screen relative">
-      <CursorFollower />
-      <FloatingElements />
-      <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Journey />
-      <Projects />
-       <Research />
-      <Contact />
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
+export default function Index() {
+  const [entered, setEntered] = useState(false);
+  useLayoutEffect(() => {
+    const previous = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    return () => { window.history.scrollRestoration = previous; };
+  }, []);
+  useLayoutEffect(() => {
+    if (!entered) return;
+    // A fresh entrance always starts at the hero, even after a contact/footer visit.
+    window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.getElementById('main')?.focus({ preventScroll: true });
+    const frame = requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
+    return () => cancelAnimationFrame(frame);
+  }, [entered]);
+  return entered ? <Portfolio /> : <MySQLStartup onEnter={() => setEntered(true)} />;
+}

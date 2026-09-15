@@ -1,6 +1,5 @@
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/bg.jpg";
 import bgVideo from "@/assets/vd2.mp4"; // ✅ this resolves during build time
 import {
   Dialog,
