@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { RotateCcw, Users } from 'lucide-react';
 import { useVisitorMap, type VisitorRegion } from './useVisitorMap';
 import { themeAccent, type Theme } from './themes';
@@ -12,6 +12,21 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
   const controls = useRef<{redraw: () => void; center: (region?: VisitorRegion) => void}>();
   const [textureState, setTextureState] = useState<'loading' | 'ready' | 'error'>('loading');
   const visitors = useVisitorMap();
+  const countries = useMemo(() => {
+    const totals = new Map<string, { id: string; label: string; visitors: number; region: VisitorRegion }>();
+    for (const region of visitors.data?.regions ?? []) {
+      // The API's regional IDs are COUNTRY:latitude:longitude. Only the list is grouped.
+      const id = /^([A-Z]{2}):/.exec(region.id)?.[1] ?? region.label.trim().toLowerCase();
+      const country = totals.get(id);
+      if (country) {
+        country.visitors += region.visitors;
+        if (region.visitors > country.region.visitors) country.region = region;
+      } else {
+        totals.set(id, { id, label: region.label, visitors: region.visitors, region });
+      }
+    }
+    return [...totals.values()].sort((a, b) => b.visitors - a.visitors || a.label.localeCompare(b.label));
+  }, [visitors.data]);
 
   useEffect(() => {
     settings.current = {motion, theme, regions: visitors.data?.regions ?? []};
@@ -191,7 +206,7 @@ export default function Earth({motion, theme}: {motion: boolean; theme: Theme}) 
         <button className="icon-button" onClick={() => controls.current?.center()} aria-label="Reset globe view"><RotateCcw size={16}/></button>
       </div>
       {visitors.data && <>
-        {visitors.data.regions.length > 0 ? <details className="visitor-regions"><summary>Explore visitor locations</summary><ul>{[...visitors.data.regions].sort((a, b) => b.visitors - a.visitors).map(region => <li key={region.id}><button onClick={() => controls.current?.center(region)}><span>{region.label}</span><strong>{region.visitors.toLocaleString()}</strong></button></li>)}</ul></details> : <p className="visitor-map-note">{visitors.data.totalVisitors ? 'Location data is not available for these visits yet.' : 'The journey starts with the first visitor.'}</p>}
+        {countries.length > 0 ? <details className="visitor-regions"><summary>Explore visitor countries</summary><ul>{countries.map(country => <li key={country.id}><button onClick={() => controls.current?.center(country.region)}><span>{country.label}</span><strong>{country.visitors.toLocaleString()}</strong></button></li>)}</ul></details> : <p className="visitor-map-note">{visitors.data.totalVisitors ? 'Location data is not available for these visits yet.' : 'The journey starts with the first visitor.'}</p>}
       </>}
     </div>
   </div>;
