@@ -17,11 +17,23 @@ Commit the server code and schema initialization, not the live database. `.gitig
 Deploy using the repository Dockerfile, expose port **5173**, and configure:
 
 ```text
-PUBLIC_ORIGIN=https://amber-orbit-2566.de.uday.me
+PUBLIC_ORIGIN=https://aakashmaurya.de.deplexo.com
 VISITOR_DB_PATH=/app/data/visitors.sqlite
 ```
 
 Mount a **persistent named volume/disk at `/app/data`**, writable by container user `node` (UID 1000). Reattach the same volume on every redeploy. The Dockerfile's `VOLUME` declaration alone does not guarantee that the host will reuse its contents. Use one app instance with this SQLite database. Multiple replicas or hosts require a shared database instead. Do not cache `/api/visitors` at the CDN; the service sends `Cache-Control: no-store`.
+
+Use the exact site origin in `PUBLIC_ORIGIN`, without a trailing slash, and redeploy after changing it.
+
+### SQLite startup permissions
+
+If the build succeeds but startup reports `SQLITE_CANTOPEN` / `unable to open database file`, check the runtime storage mount and its permissions. A mounted volume replaces `/app/data` from the image, so the Dockerfile's build-time `chown` is not sufficient.
+
+The container entrypoint now prepares the database directory and any existing SQLite database/WAL/SHM/journal files, then drops privileges to `node` (UID/GID 1000:1000) before starting the app. It preserves the files and does not recursively change unrelated files on the volume. Keep the Dockerfile entrypoint enabled in the hosting configuration.
+
+If the platform enforces a non-root startup user, mounts the volume read-only, or disallows ownership changes, the platform administrator must make the existing persistent directory and SQLite files writable by UID/GID 1000:1000. The directory also needs search/execute permission so SQLite can open the file and create its journals. Do not use a temporary database location or replace the existing volume to work around permissions: that would lose the existing history on redeploy.
+
+After deploying, runtime logs should show `Portfolio and visitor API listening on 5173`, and `GET /api/visitors` should return JSON. A remaining 403 during registration points to `PUBLIC_ORIGIN`, not SQLite permissions.
 
 Back up SQLite using its online backup mechanism, or stop the service and back up the entire data directory including WAL files. The signing secret is stored in the same database and must persist with it.
 
@@ -36,3 +48,5 @@ Back up SQLite using its online backup mechanism, or stop the service and back u
 ## Validation
 
 Run `npm run test:visitors`, `npm run build`, and `npx tsc -p tsconfig.app.json --noEmit`.
+
+For runtime volume permissions, build `docker build -t portfolio-storage-fix:local .`, then run `node --test server/docker-storage.test.mjs`. This uses an isolated temporary Docker volume to reproduce the SQLite error, verify ownership repair and non-root startup, preserve existing counts/cookies across container replacement, and reject read-only storage. It removes only its own test container and volume afterward.
