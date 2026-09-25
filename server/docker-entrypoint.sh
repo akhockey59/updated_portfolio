@@ -1,12 +1,12 @@
 #!/bin/sh
 set -eu
 
-db_path="${VISITOR_DB_PATH:-/app/data/visitors.sqlite}"
+db_path="${VISITOR_DB_PATH:-/data/visitors.sqlite}"
 db_dir="$(dirname "$db_path")"
 
 storage_error() {
   echo "Visitor storage unavailable: $*" >&2
-  echo "Mount a writable persistent directory at $db_dir, owned by container UID/GID 1000:1000. Reuse the existing volume to preserve visitor counts." >&2
+  echo "Mount persistent storage at $db_dir with read/write access for the running UID/GID $(id -u):$(id -g). Ownership changes are not required if access is already granted. Reuse the existing volume to preserve visitor counts." >&2
   exit 1
 }
 
@@ -15,31 +15,26 @@ if [ -L "$db_dir" ]; then
   storage_error "the database directory must not be a symbolic link"
 fi
 
-# A runtime mount replaces the image directory and its build-time permissions.
-# Adjust only the SQLite directory/files, never recursively chown the volume.
-if [ "$(id -u)" = 0 ]; then
-  chown node:node "$db_dir" || storage_error "cannot set ownership on $db_dir"
-  chmod u+rwx "$db_dir" || storage_error "cannot make $db_dir writable"
-fi
-
+# Managed storage can be writable through group permissions or ACLs while
+# forbidding chown. Validate access without changing ownership or permissions.
 for db_file in "$db_path" "$db_path-wal" "$db_path-shm" "$db_path-journal"; do
   if [ -L "$db_file" ]; then
     storage_error "$db_file must not be a symbolic link"
   fi
   if [ -e "$db_file" ]; then
     [ -f "$db_file" ] || storage_error "$db_file is not a regular file"
-    if [ "$(id -u)" = 0 ]; then
-      chown node:node "$db_file" || storage_error "cannot set ownership on $db_file"
-      chmod u+rw "$db_file" || storage_error "cannot make $db_file writable"
-    fi
-    [ -w "$db_file" ] || storage_error "$db_file is not writable"
+    [ -r "$db_file" ] && [ -w "$db_file" ] || storage_error "$db_file is not readable/writable"
   fi
 done
 
-if [ "$(id -u)" = 0 ]; then
-  # Recheck access as the app user and replace the shell so Node receives signals.
-  exec su-exec node "$0" "$@"
-fi
-
 [ -w "$db_dir" ] && [ -x "$db_dir" ] || storage_error "$db_dir is not writable/searchable"
+
+# Test a real write: mode bits alone do not detect read-only runtime mounts.
+# Only this uniquely named probe is removed; database and journal files are untouched.
+probe="$(mktemp "$db_dir/.portfolio-write-check.XXXXXX")" || storage_error "cannot create a file in $db_dir"
+trap 'rm -f "$probe"' 0
+rm -f "$probe" || storage_error "cannot remove the storage write probe"
+trap - 0
+
+# Keep the runtime identity selected by the Dockerfile or hosting platform.
 exec "$@"

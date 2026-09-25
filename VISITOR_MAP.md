@@ -18,20 +18,24 @@ Deploy using the repository Dockerfile, expose port **5173**, and configure:
 
 ```text
 PUBLIC_ORIGIN=https://aakashmaurya.de.deplexo.com
-VISITOR_DB_PATH=/app/data/visitors.sqlite
+VISITOR_DB_PATH=/data/visitors.sqlite
 ```
 
-Mount a **persistent named volume/disk at `/app/data`**, writable by container user `node` (UID 1000). Reattach the same volume on every redeploy. The Dockerfile's `VOLUME` declaration alone does not guarantee that the host will reuse its contents. Use one app instance with this SQLite database. Multiple replicas or hosts require a shared database instead. Do not cache `/api/visitors` at the CDN; the service sends `Cache-Control: no-store`.
+Mount a **persistent named volume/disk at `/data`**, writable by the application user (default `node`, UID/GID 1000:1000). Reattach the same volume on every redeploy. The Dockerfile's `VOLUME` declaration alone does not guarantee that the host will reuse its contents. Use one app instance with this SQLite database. Multiple replicas or hosts require a shared database instead. Do not cache `/api/visitors` at the CDN; the service sends `Cache-Control: no-store`.
 
 Use the exact site origin in `PUBLIC_ORIGIN`, without a trailing slash, and redeploy after changing it.
 
 ### SQLite startup permissions
 
-If the build succeeds but startup reports `SQLITE_CANTOPEN` / `unable to open database file`, check the runtime storage mount and its permissions. A mounted volume replaces `/app/data` from the image, so the Dockerfile's build-time `chown` is not sufficient.
+If the build succeeds but startup reports `SQLITE_CANTOPEN` / `unable to open database file`, check the runtime storage mount and its permissions. A mounted volume replaces `/data` from the image, so the Dockerfile's build-time `chown` is not sufficient.
 
-The container entrypoint now prepares the database directory and any existing SQLite database/WAL/SHM/journal files, then drops privileges to `node` (UID/GID 1000:1000) before starting the app. It preserves the files and does not recursively change unrelated files on the volume. Keep the Dockerfile entrypoint enabled in the hosting configuration.
+The container starts as `node` by default and uses Deplexo’s supported `/data` mount. The entrypoint checks existing SQLite files and creates/removes a uniquely named temporary write probe in the database directory. It does **not** run `chown`, `chmod`, `su-exec`, or switch users at runtime. Group permissions or ACLs are sufficient; the directory does not need to be owned by the app user. A user override supplied by the hosting platform is respected.
 
-If the platform enforces a non-root startup user, mounts the volume read-only, or disallows ownership changes, the platform administrator must make the existing persistent directory and SQLite files writable by UID/GID 1000:1000. The directory also needs search/execute permission so SQLite can open the file and create its journals. Do not use a temporary database location or replace the existing volume to work around permissions: that would lose the existing history on redeploy.
+The previous entrypoint required root to change ownership and then switch to `node`. Managed hosts can prohibit those operations even on writable storage, resulting in `chown: /data: Operation not permitted`. This requirement has been removed. The image still sets ownership of its default directory at build time for ordinary Docker volumes.
+
+Keep `VISITOR_DB_PATH=/data/visitors.sqlite` in Deplexo’s environment settings; an explicit old `/app/data` setting overrides the new image default. Reattach the existing persistent volume. If existing data lives elsewhere, migrate it while the app is stopped, including SQLite journal files, rather than starting a new history by mistake.
+
+If startup still reports a failed write probe or unreadable database, the platform must grant the running UID/GID write access to the mount and existing database files. Read-only mounts still cannot support SQLite. Do not move the database into `/tmp` or switch to memory storage: neither preserves counts on redeployment.
 
 After deploying, runtime logs should show `Portfolio and visitor API listening on 5173`, and `GET /api/visitors` should return JSON. A remaining 403 during registration points to `PUBLIC_ORIGIN`, not SQLite permissions.
 
@@ -49,4 +53,4 @@ Back up SQLite using its online backup mechanism, or stop the service and back u
 
 Run `npm run test:visitors`, `npm run build`, and `npx tsc -p tsconfig.app.json --noEmit`.
 
-For runtime volume permissions, build `docker build -t portfolio-storage-fix:local .`, then run `node --test server/docker-storage.test.mjs`. This uses an isolated temporary Docker volume to reproduce the SQLite error, verify ownership repair and non-root startup, preserve existing counts/cookies across container replacement, and reject read-only storage. It removes only its own test container and volume afterward.
+For runtime volume permissions, build `docker build -t portfolio-storage-fix:local .`, then run `node --test server/docker-storage.test.mjs`. This uses an isolated temporary Docker volume to reproduce forbidden ownership changes, verify startup with all Linux capabilities dropped and a read-only root filesystem, preserve counts/cookies and existing ownership across container replacement, honor a custom runtime user/database path, and reject a read-only data mount. It removes only its own test container and volume afterward.
